@@ -9,6 +9,6 @@ repos:
     hooks:
       - id: pytest
         name: pytest
-        entry: uv run pytest
+        entry: uv run pytest -m "not ci"
         language: system
         pass_filenames: false

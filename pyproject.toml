@@ -7,7 +7,11 @@ requires-python = ">=3.14"
 dependencies = [
     "deepagents>=0.5.7",
     "fastapi>=0.136.1",
+    "pillow>=10.4.0",
+    "pydantic-settings>=2.10.1",
     "pydantic>=2.13.4",
+    "python-multipart>=0.0.9",
+    "python-dotenv>=1.1.1",
     "uvicorn>=0.30.6",
 ]
 
@@ -76,6 +80,11 @@ warn_unused_configs = true
 ignore_missing_imports = false
 pretty = true
 show_error_codes = true
+
+[tool.pytest.ini_options]
+markers = [
+    "ci: tests that call external services",
+]
 
 [dependency-groups]
 dev = [
