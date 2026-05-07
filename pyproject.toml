@@ -1,0 +1,86 @@
+[project]
+name = "serial-number-detection-agent"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "deepagents>=0.5.7",
+    "fastapi>=0.136.1",
+    "pydantic>=2.13.4",
+    "uvicorn>=0.30.6",
+]
+
+[tool.ruff]
+line-length = 80
+target-version = "py39"
+
+[tool.ruff.lint]
+select = [
+    "E",   # pycodestyle (PEP8)
+    "W",   # pycodestyle warnings
+    "F",   # pyflakes
+    "I",   # isort (import order)
+    "N",   # pep8-naming
+    "B",   # flake8-bugbear
+    "C4",  # comprehensions
+    "SIM", # simplify (exceptions bellow)
+    "UP",  # pyupgrade
+    "PT",
+    "RUF", # ruff rules
+]
+
+preview = true
+
+ignore = [
+    "G004",    # f-string em logging
+    "SIM103",
+    "D100",    # its not public module
+    "RET505",  # else after return
+    "RET506",  # else after raise
+    "RET507",  # else after continue
+    "RET508",  # else after break,
+    "D2",      # Ignore docstring formatting rules
+    "D3",      # Ignore docstring summary line rules
+    "D4",      # Ignore docstring content rules
+]
+
+extend-select = ["D101", "D102", "D103", "D104", "D105", "D107", "E301", "E302", "E303", "E304", "E305", "E306", "D202"]
+
+
+# ignore files in __init__.py e and legacy
+exclude = ["**/__init__.py", "src/legacy/**", "**/legacy/**", "notebooks/**"]
+
+[tool.ruff.lint.isort]
+combine-as-imports = true
+force-sort-within-sections = true
+split-on-trailing-comma = true
+known-first-party = ["src"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+line-ending = "lf"
+preview = false
+
+[tool.mypy]
+python_version = "3.9"
+check_untyped_defs = true
+disallow_untyped_defs = true
+strict_optional = true
+no_implicit_optional = true
+warn_unused_ignores = true
+warn_return_any = true
+warn_redundant_casts = true
+warn_unused_configs = true
+ignore_missing_imports = false
+pretty = true
+show_error_codes = true
+
+[dependency-groups]
+dev = [
+        "pre-commit>=4.6.0",
+        "pytest>=8.3.4",
+        "httpx>=0.27.2",
+        "ruff>=0.14.2",
+]
